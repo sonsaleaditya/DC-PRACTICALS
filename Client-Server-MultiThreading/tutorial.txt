@@ -1,0 +1,103 @@
+
+# Number System Converter - Multi-Threaded Client-Server Application
+
+This project implements a **multi-threaded TCP server** and a **TCP client** to perform number system conversions (Decimal to Binary, Octal, and Hexadecimal). The server can handle multiple clients concurrently using Java's `ExecutorService`.
+
+---
+
+## Overview
+
+- **Server**: Accepts decimal numbers from clients and converts them into Binary, Octal, and Hexadecimal formats.
+- **Client**: Connects to the server, sends a decimal number, and receives the converted results.
+
+---
+
+## Features
+
+1. **Multi-threaded Server**:
+   - Handles up to 10 clients simultaneously using a thread pool.
+   - Converts decimal numbers to Binary, Octal, and Hexadecimal formats.
+
+2. **TCP Client**:
+   - Connects to the server and communicates via TCP.
+   - Reads input from the user and sends it to the server for conversion.
+
+---
+
+## Prerequisites
+
+1. **Java Development Kit (JDK)**: Ensure JDK 8 or above is installed.
+2. **Network Setup**: 
+   - Update the server IP address in the client program (`TcpClient.java`) to match the server machine's IP.
+
+---
+
+## Files Provided
+
+1. **`NumberSystemConverterServer.java`**: The multi-threaded TCP server.
+2. **`TcpClient.java`**: The TCP client program.
+
+---
+
+## How to Run
+
+### Step 1: Compile the Programs
+
+```bash
+javac NumberSystemConverterServer.java
+javac TcpClient.java
+```
+
+### Step 2: Start the Server
+
+Run the server program:
+
+```bash
+java NumberSystemConverterServer
+```
+
+The server will start and listen on port `1234` for incoming connections.
+
+### Step 3: Start the Client
+
+Run the client program:
+
+```bash
+java TcpClient
+```
+
+- The client connects to the server and exchanges data.
+- Enter a decimal number when prompted to see the converted results.
+
+---
+
+## Example Interaction
+
+### Server Output
+
+```
+Server started. Waiting for clients...
+Client connected: 192.168.177.200
+Client converted: 15
+Client converted: 255
+Client disconnected.
+```
+
+### Client Output
+
+```
+Welcome to the Number System Converter Server!
+Enter a decimal number (or 'exit' to quit):
+15
+Binary: 1111
+Octal: 17
+Hexadecimal: F
+
+Enter a decimal number (or 'exit' to quit):
+255
+Binary: 11111111
+Octal: 377
+Hexadecimal: FF
+
+Enter a decimal number (or 'exit' to quit):
+exit

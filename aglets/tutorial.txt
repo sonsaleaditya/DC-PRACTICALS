@@ -1,0 +1,92 @@
+# Distributed Computing Programs with Aglets
+
+This repository contains distributed computing programs built using **Aglets**, a Java-based mobile agent framework.
+
+## Prerequisites
+
+Before running the programs, ensure the following:
+
+- **Java Development Kit (JDK)**: Java 8 is required.
+- **Apache Ant**: Provided as `apache-ant-1.10.15-bin.zip` in this repository.
+- **Aglets**: The Aglets framework for mobile agents.
+
+## Installation and Setup
+
+### 1. Download and Install Aglets
+
+1. Download Aglets from the [official website](http://aglets.sourceforge.net/) or the provided distribution.  
+2. Extract the contents to a directory of your choice, e.g., `~/aglets`.
+
+### 2. Install Apache Ant
+
+1. Download the provided `apache-ant-1.10.15-bin.zip` file from this repository.  
+2. Extract it to the `~/aglets` directory or any directory of your choice.
+
+   Example:
+
+   ```bash
+   unzip apache-ant-1.10.15-bin.zip -d ~/aglets
+   ```
+
+### 3. Configure Environment Variables
+
+1. Copy the following configuration and add it to your environment file (e.g., `~/.bashrc` or `~/.zshrc`):
+
+    ```bash
+    # Apache Ant setup
+    export ANT_HOME=~/aglets/apache-ant-1.10.15
+    export PATH=$PATH:$ANT_HOME/bin
+
+    # Java setup
+    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+    export PATH=$PATH:$JAVA_HOME/bin
+
+    # Aglets setup
+    export AGLETS_HOME=~/aglets
+    export PATH=$PATH:$AGLETS_HOME
+    export PATH=$PATH:$AGLETS_HOME/bin
+    ```
+
+2. Reload the environment variables by running:
+
+    ```bash
+    source ~/.bashrc  # or ~/.zshrc
+    ```
+
+### 4. Verify Setup
+
+Run the following commands to verify the installation:
+
+```bash
+java -version       # Should display Java 8
+ant -version        # Should display Apache Ant version
+```
+
+## Running the Programs
+
+1. Navigate to the Aglets `bin` directory:
+
+    ```bash
+    cd ~/aglets/bin
+    ```
+
+2. Start the Aglets platform:
+
+    ```bash
+    ./aglets
+    ```
+
+3. Follow the program-specific instructions provided in this repository to execute the desired tasks.
+
+---
+
+## Files Provided
+
+- **`apache-ant-1.10.15-bin.zip`**: Apache Ant binary distribution for setup.
+- Additional source code and configurations are available in the repository.
+
+## References
+
+- [Aglets Framework](http://aglets.sourceforge.net/)
+- [Apache Ant Documentation](https://ant.apache.org/)
+- [Java OpenJDK](https://openjdk.org/)

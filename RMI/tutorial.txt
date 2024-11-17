@@ -1,0 +1,110 @@
+# RMI Program: Remote Method Invocation Example
+
+This project demonstrates how to set up and use Java RMI (Remote Method Invocation) to create distributed applications where objects can invoke methods remotely across different JVMs.
+
+---
+
+## Prerequisites
+
+1. **JDK Installation**:
+   - Ensure that Java Development Kit (JDK) is installed and properly configured.
+
+2. **RMI Registry**:
+   - You must have the `rmiregistry` running for the RMI program to work. The registry acts as a directory for RMI servers to register their remote objects.
+
+---
+
+## Files Included
+
+1. **`MyRemoteInterface.java`**: The remote interface that defines the methods available for remote invocation.
+2. **`MyRemoteImpl.java`**: The implementation of the remote interface, where the business logic is executed.
+3. **`MyRMIServer.java`**: The server program that registers the remote object with the RMI registry.
+4. **`MyRMIClient.java`**: The client program that looks up the remote object in the RMI registry and invokes its methods.
+
+---
+
+## How to Run
+
+### 1. **Compile All Files**
+
+To compile all the Java source files, use the following command:
+
+```bash
+javac MyRemoteInterface.java MyRemoteImpl.java MyRMIServer.java MyRMIClient.java
+```
+
+This will compile the four Java files into `.class` files.
+
+### 2. **Start the RMI Registry**
+
+The RMI registry must be running before the server can register remote objects. Start the registry by running the following command in the terminal:
+
+```bash
+rmiregistry
+```
+
+Make sure to run this in a separate terminal window or background process.
+
+### 3. **Run the Server**
+
+The server registers the remote object with the RMI registry so that it can be accessed by the client. To run the server, use:
+
+```bash
+java MyRMIServer
+```
+
+The server will initialize the remote object and bind it to the RMI registry.
+
+### 4. **Run the Client**
+
+The client connects to the RMI registry, looks up the remote object, and invokes methods on it. To run the client, use:
+
+```bash
+java MyRMIClient
+```
+
+The client will look up the registered object in the registry and call the remote methods.
+
+---
+
+## Example Workflow
+
+### 1. **Server Program (`MyRMIServer.java`)**
+
+The server creates an instance of the remote object (`MyRemoteImpl`), binds it to the RMI registry, and waits for client requests.
+
+### 2. **Client Program (`MyRMIClient.java`)**
+
+The client program connects to the RMI registry, looks up the remote object using the registry, and calls the remote methods available in the interface (`MyRemoteInterface`).
+
+---
+
+## Notes
+
+1. **Ports and Firewalls**: If you are running the server and client on different machines, ensure that the necessary ports (by default, `1099`) are open and not blocked by firewalls.
+   
+2. **Security**: Make sure that the security policy for RMI is set up correctly, especially if you're working with remote objects across different machines or networks.
+
+3. **RMI Registry**: If the registry is running on a different machine or custom port, you will need to specify the host and port in your client code.
+
+4. **Error Handling**: If you encounter any connection issues, ensure that the RMI registry is running and that the server has successfully registered its object before the client attempts to access it.
+
+---
+
+## Program Structure
+
+### `MyRemoteInterface.java`
+
+Defines the remote methods that can be called by the client. It extends `java.rmi.Remote` and each method throws `RemoteException`.
+
+### `MyRemoteImpl.java`
+
+Provides the implementation of the remote interface. It implements the methods declared in the remote interface.
+
+### `MyRMIServer.java`
+
+Sets up the RMI registry and binds the remote object to it, making it available for clients.
+
+### `MyRMIClient.java`
+
+Looks up the remote object in the registry and invokes methods on it.

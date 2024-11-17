@@ -1,0 +1,118 @@
+# RPC Program: Remote Procedure Call Example
+
+This project demonstrates how to set up and use Remote Procedure Calls (RPC) in a distributed environment. The client communicates with a server to perform a remote operation, and the server responds with the result.
+
+---
+
+## Prerequisites
+
+1. **Install Required Packages**:
+   - Ensure that the following packages are installed:
+     - `rpcbind`: This is required for binding RPC services and servers.
+     - `tirpc`: This is used for RPC in the context of modern Linux systems.
+
+   You can install `rpcbind` using the following command:
+
+   ```bash
+   sudo apt-get install rpcbind
+   ```
+
+2. **Ensure RPC is Running**:
+   - The `rpcbind` service must be running to register RPC services.
+   - You can check the running RPC services using the command `rpcinfo`.
+
+   Example output of `rpcinfo` might look like:
+
+   ```bash
+   rpcinfo
+   program version netid     address                service    owner
+   100000    4    tcp6      ::.0.111               portmapper superuser
+   100000    3    tcp6      ::.0.111               portmapper superuser
+   100000    4    udp6      ::.0.111               portmapper superuser
+   100000    3    udp6      ::.0.111               portmapper superuser
+   100000    4    tcp       0.0.0.0.0.111          portmapper superuser
+   100000    3    tcp       0.0.0.0.0.111          portmapper superuser
+   100000    2    tcp       0.0.0.0.0.111          portmapper superuser
+   100000    4    udp       0.0.0.0.0.111          portmapper superuser
+   100000    3    udp       0.0.0.0.0.111          portmapper superuser
+   100000    2    udp       0.0.0.0.0.111          portmapper superuser
+   ```
+
+3. **Compile the IDL Files**:
+   - Make sure to use `rpcgen` to generate the necessary server and client stubs from the IDL file.
+
+   Example command to generate the stubs:
+
+   ```bash
+   rpcgen IDL.x
+   ```
+
+4. **Makefile Setup**:
+   - In case of using a custom Makefile, ensure the `CFLAGS` and `LDLIBS` are set up to link the required libraries (such as `tirpc`).
+
+   Example:
+
+   ```bash
+   make -f Makefile.IDL CFLAGS="-I/usr/include/tirpc" LDLIBS="-ltirpc"
+   ```
+
+---
+
+## Steps to Run the Program
+
+### 1. **Start the RPC Server**
+
+- To start the server, use the following command:
+
+   ```bash
+   sudo ./IDL_server
+   ```
+
+- This starts the server and listens for incoming client requests.
+
+### 2. **Run the Client**
+
+- On the client machine, use the following command to run the client:
+
+   ```bash
+   sudo ./IDL_client localhost
+   ```
+
+- The client will ask you to input two numbers followed by an operation (e.g., addition). The format will be:
+
+   ```plaintext
+   Enter the 2 numbers followed by the operation to perform:
+   10 20 +
+   ```
+
+- The client will display the result of the operation. Example output:
+
+   ```plaintext
+   Answer= 30.000000
+   ```
+
+---
+
+## Example Workflow
+
+1. **Server Program (`IDL_server`)**
+
+   The server listens for incoming requests. It uses the `rpcgen` generated code to handle the specific RPC function calls. In this case, it might add two numbers and send back the result.
+
+2. **Client Program (`IDL_client`)**
+
+   The client asks the user for two numbers and an operator (e.g., `+`, `-`, etc.). It sends this data to the server using RPC and waits for the server's response.
+
+---
+
+## Notes
+
+1. **Running on Different Machines**: If the client and server are running on different machines, ensure that the `rpcbind` service is running on both the server and client systems. Additionally, the network must allow connections to the port where the RPC service is running.
+
+2. **Security**: Always ensure that your system is properly secured when using services like RPC, especially when running in a production environment. This can include using firewalls and secure communication channels.
+
+3. **Dependencies**: If you encounter any missing dependencies, you may need to install them using your system's package manager. For example, on Ubuntu, you can install `rpcbind` and `tirpc` using:
+
+   ```bash
+   sudo apt-get install rpcbind libtirpc-dev
+   ```

@@ -1,0 +1,70 @@
+
+# Age Calculator Applet
+
+This repository contains a simple Java applet, **AgeCalculatorApplet**, and its corresponding HTML file for embedding and running the applet.
+
+## Description
+
+The **AgeCalculatorApplet** allows users to input their birth year and calculates their age based on the current year. The applet is embedded in an HTML file for demonstration purposes.
+
+## Prerequisites
+
+1. **Java Development Kit (JDK)**  
+   - Java 8 is recommended. Ensure that the `JAVA_HOME` environment variable is set.  
+   - Use `AppletViewer` if your browser does not support applets.
+
+2. **AppletViewer**  
+   - Included in the JDK and suitable for viewing applets when browser support is unavailable.
+
+## Files Provided
+
+1. **`AgeCalculatorApplet.java`**: The source code for the applet.  
+2. **`Applet.html`**: The HTML file that embeds the applet.
+
+## Steps to Run
+
+### 1. Compile the Applet
+
+Navigate to the directory containing the `AgeCalculatorApplet.java` file and run:
+
+```bash
+javac AgeCalculatorApplet.java
+```
+
+This will generate a `AgeCalculatorApplet.class` file in the same directory.
+
+### 2. Run the Applet
+
+There are two ways to run the applet:
+
+#### Option 1: Using AppletViewer
+
+Run the applet using the `AppletViewer` tool provided with the JDK:
+
+```bash
+appletviewer Applet.html
+```
+
+#### Option 2: Using a Web Browser
+
+1. Open the `Applet.html` file in an older browser that supports applets (e.g., older versions of Internet Explorer or Firefox).  
+2. Alternatively, use a local HTTP server to serve the file:
+
+   ```bash
+   python3 -m http.server 8000  # For Python 3 users
+   ```
+
+   Then, open the file in a browser by navigating to `http://localhost:8000/Applet.html`.
+
+### 3. Interact with the Applet
+
+Once the applet is running, enter your birth year and interact with the interface to calculate your age.
+
+## Notes
+
+- Modern browsers do not support Java applets. Use `AppletViewer` or set up a virtual machine with an older browser to run the applet.
+- Ensure Java security settings allow running unsigned applets.
+
+## Example Output
+
+When the applet runs successfully, you will see a form prompting for the birth year. After entering a value, the applet will display the calculated age.

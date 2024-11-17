@@ -1,0 +1,118 @@
+
+# MPI Programs: Broadcast and Scatter/Average
+
+This project contains two MPI (Message Passing Interface) programs that demonstrate the use of MPI communication for broadcast and scatter/average operations.
+
+---
+
+## Prerequisites
+
+1. **MPI Installation**:
+   - Ensure that MPI is installed on your system. You can use `mpicc` to compile and `mpirun` to run MPI programs.
+
+2. **MPI Runtime**:
+   - Make sure you have multiple processes available to run your MPI programs. Typically, you'll use `mpirun` to execute the program across several processes.
+
+---
+
+## Files Included
+
+1. **`MPI_Broadcast.c`**: An MPI program that demonstrates broadcasting data from one process to all other processes.
+2. **`MPI_Scatter_Average.c`**: An MPI program that demonstrates scattering data to all processes, calculating the average, and then gathering results.
+
+---
+
+## How to Run
+
+### 1. **MPI Broadcast**
+
+This program demonstrates the use of `MPI_Bcast` to broadcast a variable from the root process to all other processes.
+
+#### Step 1: Compile the Program
+
+To compile the MPI Broadcast program, use the following command:
+
+```bash
+mpicc MPI_Broadcast.c -o mpi_broadcast
+```
+
+#### Step 2: Run the Program
+
+To run the program with 4 processes, use:
+
+```bash
+mpirun -np 4 ./mpi_broadcast
+```
+
+This will start the program across 4 processes. The root process will broadcast a variable, and all other processes will receive the value.
+
+### 2. **MPI Scatter and Average**
+
+This program demonstrates the use of `MPI_Scatter` to distribute data to all processes, calculate the average of each process's data, and gather the results back.
+
+#### Step 1: Compile the Program
+
+To compile the MPI Scatter and Average program, use:
+
+```bash
+mpicc mpi_scatter_average.c -o mpi_scatter_average
+```
+
+#### Step 2: Run the Program
+
+To run the program with 4 processes, use:
+
+```bash
+mpirun -np 4 ./mpi_scatter_average
+```
+
+This will start the program across 4 processes. The root process will scatter data to all processes, and each process will compute an average of its assigned data.
+
+---
+
+## Example Workflow
+
+### MPI Broadcast Program Example
+
+#### Input:
+The root process (rank 0) initializes an integer array, and the value is broadcast to all other processes.
+
+#### Output:
+Each process will print the broadcasted value received from the root process.
+
+---
+
+### MPI Scatter and Average Program Example
+
+#### Input:
+The root process (rank 0) has an array of integers, which it scatters to all processes.
+
+#### Output:
+Each process will compute the average of its portion of the data, and the root process will gather and print the average for each process.
+
+---
+
+## Notes
+
+1. **Number of Processes**: The `-np` flag in `mpirun` determines how many processes will run the program. You can change this number based on your system's capabilities.
+
+2. **Debugging**: If you encounter errors, check the MPI environment setup and ensure that all nodes involved in the program execution are accessible.
+
+3. **MPI Functions**: The programs use:
+   - `MPI_Bcast`: Used for broadcasting a variable to all processes.
+   - `MPI_Scatter`: Used for distributing data across processes.
+   - `MPI_Gather`: Used for collecting data from all processes.
+
+---
+
+## Program Structure
+
+### `MPI_Broadcast.c`
+
+This program demonstrates broadcasting a value from the root process to all other processes using `MPI_Bcast`.
+
+### `MPI_Scatter_Average.c`
+
+This program demonstrates scattering data from the root process to all processes, calculating the average for each process's data using `MPI_Scatter` and gathering the results using `MPI_Gather`.
+
+---
