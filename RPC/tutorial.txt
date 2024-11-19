@@ -53,7 +53,7 @@ This project demonstrates how to set up and use Remote Procedure Calls (RPC) in 
    Example:
 
    ```bash
-   make -f Makefile.IDL CFLAGS="-I/usr/include/tirpc" LDLIBS="-ltirpc"
+   make -f Makefile.IDL CFLAGS="-I/usr/include/tirpc" LDLIBS="-lnsl -ltirpc"
    ```
 
 ---
